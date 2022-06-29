@@ -13,14 +13,9 @@ services:
             - 1.1.1.1
             - 1.0.0.1
         volumes:
-            - ./config.ovpn:/config/config.ovpn
-        environment: # This needs to change - your local network
-            - LOCAL_NETWORK=10.0.8.1/24
-            # Create a .env file with these values
-            - OPENVPN_USERNAME=${OPENVPN_USERNAME}
-            - OPENVPN_PASSWORD=${OPENVPN_PASSWORD}
-            # Adjust for your needs
-            - OPENVPN_TUNNEL_HOSTS=*.corp.com
+            - ./config/:/config/
+        env_file:
+            - .env
         ports:
             - 8081:80
             - 8080:8080
